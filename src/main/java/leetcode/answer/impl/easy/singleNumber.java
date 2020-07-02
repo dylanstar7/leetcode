@@ -1,5 +1,14 @@
 package leetcode.answer.impl.easy;
 
+import org.springframework.util.StopWatch;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
  * <p>
@@ -17,9 +26,42 @@ package leetcode.answer.impl.easy;
 public class singleNumber {
 
     public static void main(String[] args) {
-        singleNumber singleNumber = new singleNumber();
-        int[] nums = new int[]{1,2,3,2,3};
-        System.out.println(singleNumber.singleNumber(nums));
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        Integer[] nums = new Integer[10000000];
+
+        for(int i = 0; i<10000000;i++){
+            nums[i] = i;
+        }
+
+        List<Integer> num = new ArrayList<Integer>(Arrays.asList(nums));
+        Stream<Integer> stream = num.stream();
+        if(true){
+            stream = stream.filter(e -> e != 1 );
+        }
+        if(true){
+            stream = stream.filter(e -> e %2 != 0 );
+        }
+
+
+        List<Integer> collect = stream.collect(Collectors.toList());
+
+//        List<Integer> list = new ArrayList<>();
+//        for(Integer n:num){
+//            if(true && n != 1){
+//                list.add(n);
+//            }
+//
+//            if(true && n %2 !=0 ){
+//                list.add(n);
+//            }
+//        }
+
+        stopWatch.stop();
+        System.out.println(stopWatch.getLastTaskTimeMillis());
+
+//        System.out.println(collect);
+
     }
 
     public int singleNumber(int[] nums) {

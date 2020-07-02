@@ -2,8 +2,8 @@ package leetcode.answer.impl.easy;
 
 import com.sun.imageio.plugins.common.I18N;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * TODO
@@ -58,6 +58,43 @@ class MyQueue {
             return false;
         }
     }
+
+
+    public static void main(String[] args) {
+//        MyQueue myQueue = new  MyQueue();
+//        int duplicate = myQueue.findDuplicate(new int[]{1, 3, 4, 3, 2, 7, 5, 3});
+//        System.out.println(duplicate);
+    }
+
+
+    public int findDuplicate(int[] nums) {
+        int n = nums.length;
+        int l = 1, r = n - 1, ans = -1;
+        while (l <= r) {
+            int mid = (l + r) >> 1;
+            int cnt = 0;
+            for (int i = 0; i < n; ++i) {
+                if (nums[i] <= mid) {
+                    cnt++;
+                }
+            }
+            if (cnt <= mid) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+                ans = mid;
+            }
+        }
+        return ans;
+
+    }
+
+
+//    public int subarraysDivByK(int[] A, int K) {
+//        HashMap<Integer, Integer> map = new HashMap<>();
+//
+//    }
+
 }
 
 /**
