@@ -13,32 +13,27 @@ import java.util.Map;
  */
 public class IsPalindrome {
 
-//    public boolean isPalindrome(String s) {
-//
-//        String s1 = s.toLowerCase();
-//
-//        int length = s1.length();
-//        if(length == 0 ){
-//            return  true;
-//        }
-//
-//        for(int i = 0 ; i< length/2; i++){
-//            if(s1.charAt(i) != s1.charAt(length-i-1)){
-//                return false;
-//            }
-//        }
-//
-//        return true;
-//    }
-//
-//
-//    public  Object ps(){
-//        return false == true ? Long.valueOf(1): Integer.valueOf(1);
-//    }
-//
-//    public static void main(String[] args) {
-//        System.out.println(ps);
-//    }
+    public boolean isPalindrome(String s) {
+        int n = s.length();
+        int left = 0, right = n - 1;
+        while (left < right) {
+            while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+                ++left;
+            }
+            while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+                --right;
+            }
+            if (left < right) {
+                if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+                    return false;
+                }
+                ++left;
+                --right;
+            }
+        }
+        return true;
+
+    }
 
 
 
